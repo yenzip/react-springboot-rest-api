@@ -1,4 +1,4 @@
-package org.prgms.starbooks.controller.dto;
+package org.prgms.starbooks.controller.dto.product;
 
 import org.prgms.starbooks.model.product.Category;
 

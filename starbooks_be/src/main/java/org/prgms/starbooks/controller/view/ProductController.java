@@ -1,7 +1,7 @@
-package org.prgms.starbooks.controller;
+package org.prgms.starbooks.controller.view;
 
-import org.prgms.starbooks.controller.dto.CreateProductRequest;
-import org.prgms.starbooks.controller.dto.UpdateProductRequest;
+import org.prgms.starbooks.controller.dto.product.CreateProductRequest;
+import org.prgms.starbooks.controller.dto.product.UpdateProductRequest;
 import org.prgms.starbooks.model.product.Product;
 import org.prgms.starbooks.service.ProductService;
 import org.springframework.stereotype.Controller;
