@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <title>STARBOOKS</title>
+</head>
+<body class="container-fluid">
+<h1>STARBOOKS</h1>
+<h2>Production Details</h2>
+<div class="container" th:object="${product}">
+    <div class="row gx-5">
+        <aside class="col-lg-6">
+            <div class="border rounded-4 mb-3 d-flex justify-content-center">
+                <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit"
+                     id="image" th:src="*{imageUrl}" alt="상품이미지없음"/>
+            </div>
+            <!-- thumbs-wrap.// -->
+            <!-- gallery-wrap .end// -->
+        </aside>
+        <main class="col-lg-6">
+            <div class="ps-lg-3">
+                <div>
+                    <label for="productId">ID</label>
+                    <input type="text" id="productId" name="productId" class="form-control" th:value="*{productId}"
+                           readonly>
+                </div>
+                <div>
+                    <label for="productName">Name</label>
+                    <input type="text" id="productName" name="productName" class="form-control"
+                           th:value="*{productName}" readonly>
+                </div>
+                <div>
+                    <label for="category">Category</label>
+                    <input type="text" id="category" name="category" class="form-control" th:value="*{category}"
+                           readonly>
+                </div>
+                <div>
+                    <label for="price">Price</label>
+                    <input type="text" id="price" name="price" class="form-control" th:value="*{price}" readonly>
+                </div>
+                <div>
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" name="description"
+                              th:value="*{description}" th:text="*{description}"
+                              style="height: 100px" readonly></textarea>
+                </div>
+                <div>
+                    <label for="imgUrl">Image URL</label>
+                    <input type="text" id="imgUrl" name="imgUrl" class="form-control" th:value="*{imageUrl}"
+                           readonly>
+                </div>
+                <hr class="my-4">
+                <div class="row">
+                    <div class="col">
+                        <form th:action="@{/products/{id}/edit(id=*{productId})}" method="get">
+                            <button class="w-100 btn btn-primary btn-lg">Update</button>
+                        </form>
+                    </div>
+                    <div class="col">
+                        <form th:action="@{/products/{id}/delete(id=*{productId})}" method="get">
+                            <button class="w-100 btn btn-danger btn-lg">Delete</button>
+                        </form>
+                    </div>
+                    <div class="col">
+                        <form th:action="@{/products}" method="get">
+                            <button class="w-100 btn btn-secondary btn-lg">Back</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>
