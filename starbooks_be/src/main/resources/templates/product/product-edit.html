@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <title>STARBOOKS</title>
+</head>
+<body class="container-fluid">
+<h1>STARBOOKS</h1>
+<h2>Production Modification</h2>
+<div class="container" th:object="${product}">
+    <form th:action="@{|/products/*{productId}/edit|}" method="post">
+        <!-- 아이디 정보 저장 -->
+        <input type="hidden" id="productId" name="productId" th:value="*{productId}">
+        <div class="mb-3">
+            <label for="productName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="productName" name="productName" th:value="*{productName}">
+        </div>
+        <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select class="form-control select" id="category" name="category" th:field="*{category}">
+                <option th:each="category: ${T(org.prgms.starbooks.model.product.Category).values()}"
+                        th:value="${category}"
+                        th:text="${category.getName()}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" class="form-control" id="price" name="price" th:value="*{price}">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3"
+                      th:text="*{description}"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="imageUrl" class="form-label">Image URL</label>
+            <input type="text" class="form-control" id="imageUrl" name="imageUrl" th:value="*{imageUrl}">
+        </div>
+        <hr class="my-4">
+        <div class="row">
+            <div class="col">
+                <button class="w-100 btn btn-primary btn-lg" type="submit">EDIT</button>
+            </div>
+            <div class="col">
+                <button class="w-100 btn btn-secondary btn-lg"
+                        onclick="location.href='product-list.html'"
+                        th:onclick="|location.href='@{/products}'|"
+                        type="button">CANCEL
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
