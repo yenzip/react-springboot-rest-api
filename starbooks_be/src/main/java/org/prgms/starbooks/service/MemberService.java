@@ -48,6 +48,12 @@ public class MemberService {
                 .orElseThrow(() -> new IllegalArgumentException("회원이 존재하지 않습니다."));
     }
 
+    @Transactional(readOnly = true)
+    public Member getMemberByEmail(String email) {
+        return memberRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("회원이 존재하지 않습니다."));
+    }
+
     @Transactional
     public void deleteMember(UUID memberId) {
         memberRepository.deleteById(memberId);
