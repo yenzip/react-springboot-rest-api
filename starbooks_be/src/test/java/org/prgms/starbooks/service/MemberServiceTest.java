@@ -114,6 +114,32 @@ class MemberServiceTest {
     }
 
     @Test
+    @DisplayName("이메일로 회원을 조회할 수 있다.")
+    void getMemberByEmail() {
+        // given
+        Member member = memberService.createMember("test", "test@gmail.com", "서울시 노원구", "000111");
+        String email = member.getEmail();
+
+        // when
+        Member findMember = memberService.getMemberByEmail(email);
+
+        // then
+        assertThat(findMember.getEmail()).isEqualTo(email);
+    }
+
+    @Test
+    @DisplayName("존재하지 않은 이메일로 회원을 조회할 때, 에러 메세지를 던진다.")
+    void getMemberByNonExistentEmail() {
+        // given
+        String nonExistentEmail = "test123@gmail.com";
+
+        // then
+        assertThatThrownBy(() -> memberService.getMemberByEmail(nonExistentEmail))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("회원이 존재하지 않습니다.");
+    }
+
+    @Test
     @DisplayName("상품을 삭제할 수 있다.")
     void deleteMember() {
         // given
