@@ -1,5 +1,16 @@
 package org.prgms.starbooks.controller.dto.member;
 
-// TODO: 각 입력값에 대한 유효성 검사 추가
-public record CreateMemberRequest(String name, String email, String address, String postcode) {
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
+public record CreateMemberRequest(
+        @NotBlank(message = "Name must not be blank")
+        String name,
+        @NotBlank(message = "Email must not be blank")
+        @Email(message = "Invalid email address")
+        String email,
+        @NotBlank(message = "Address must not be blank")
+        String address,
+        @NotBlank(message = "Postcode must not be blank")
+        String postcode) {
 }
